@@ -351,13 +351,13 @@ screen preferences:
 
         # Colonne de gauche.
         vbox:
-            frame:
-                style_group "pref"
-                has vbox
-
-                label _("Display")
-                textbutton _("Window") action Preference("display", "window")
-                textbutton _("Fullscreen") action Preference("display", "fullscreen")
+#            frame:
+#                style_group "pref"
+#                has vbox
+#
+#                label _("Display")
+#                textbutton _("Window") action Preference("display", "window")
+#                textbutton _("Fullscreen") action Preference("display", "fullscreen")
 
             frame:
                 style_group "pref"
@@ -570,7 +570,7 @@ screen mods:
         has vbox
         textbutton _("Return") action Return()
 
-
+         
     if nb_de_mods == 0 :
         grid 1 1:
             style_group "prefs"
@@ -619,54 +619,52 @@ screen mods:
                 mousewheel True
 
                 vbox:
-# For key in dictionnaire.items() :
-    # For nomchemin, name, etc des valeurs in dictionnaire[key] :
-# http://www.science-emergence.com/Python/HowToWorkWithDictionaryInPython/
-# http://www.science-emergence.com/Python/PythonFAQ/MultipleValuesKeyDictionaryPython/
-                    for nomchemmin, name, vermod, versg, placemod, charactermod, discussionmod, actif in mods_dispo:                      
+                    for key, (namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, actif) in dictionnaire_mods.items() :                
                         button:
-                            action SetVariable('nb_de_mods', 0)
+                            action ToggleDict(dictionnaire_mods, key, true_value=[namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, '1'], false_value=[namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, '0'])
                             xfill True
                             hbox :
                                 xalign 0.0
                                 xsize 1280
                                 xfill True
+                                $ persistent.mods[namemod] = actif
+                                $ renpy.save_persistent()
                                 hbox :
                                     xsize 450
                                     xfill True
-                                    text name text_align 0.0
+                                    text namemod text_align 0.0
                                 hbox :
                                     xsize 60
                                     xfill True                
-                                    text vermod size 15 text_align 0.5
+                                    text version_mod size 15 text_align 0.5
                                 hbox :
                                     xsize 60
                                     xfill True
-                                    text versg size 15 text_align 0.5
+                                    text version_game_mod size 15 text_align 0.5
                                 hbox :
                                     xsize 510
                                     xfill True
                                     hbox : 
-                                        if placemod == "1":
+                                        if place_mod == "1":
                                             imagebutton :
                                                 idle "menus/picto_lieu.png" 
                                                 hover "menus/picto_lieu.png" 
                                                 action Return
                                                 hovered tt.Action(("{b}{color=#000}{size=-6}Lieux ajoutés{/size}{/color}{/b}"))
-                                        if charactermod == "1":
+                                        if character_mod == "1":
                                             imagebutton :
                                                 idle "menus/picto_personnes.png" 
                                                 hover "menus/picto_personnes.png" 
                                                 action Return
                                                 hovered tt.Action(("{b}{color=#000}{size=-6}Personnages ajoutés{/size}{/color}{/b}"))
-                                        if discussionmod == "1":
+                                        if discussion_mod == "1":
                                             imagebutton :
                                                 idle "menus/picto_discussion.png" 
                                                 hover "menus/picto_discussion.png" 
                                                 action Return
                                                 hovered tt.Action(("{b}{color=#000}{size=-6}Conversations ajoutées{/size}{/color}{/b}"))
-                                hbox :
-                                    if actif == 1 :
+                                hbox : 
+                                    if actif == '1' :
                                         image "menus/actif.png" 
                                     else : 
                                         image "menus/inactif.png" 
@@ -682,6 +680,7 @@ screen mods:
         fixed:
             text tt.value xalign 0.5 yalign 0.03
             at my_transform
+    
 
 transform my_transform:
     on show:

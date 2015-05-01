@@ -2,8 +2,7 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 624: u'varmodactif' is not a keyword argument or valid child for the button statement.
-    varmodactif = actif
-               ^
+File "game/screens.rpy", line 628: is not terminated with a newline. (Check strings and parenthesis.)
+                                action ToggleDict(dictionnaire_mods, key, true_value=[id_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, '1'], false_value=[id_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, '0']
 
 Ren'Py Version: Ren'Py 6.99.3.404
