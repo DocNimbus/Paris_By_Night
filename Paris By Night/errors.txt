@@ -2,8 +2,8 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 645: ATL statement contains two expressions in a row; is one of them a misspelled property? If not, separate them with pass.
-    text tt.value xpos 15 ypos 15
-                  ^
+File "game/screens.rpy", line 624: u'varmodactif' is not a keyword argument or valid child for the button statement.
+    varmodactif = actif
+               ^
 
 Ren'Py Version: Ren'Py 6.99.3.404

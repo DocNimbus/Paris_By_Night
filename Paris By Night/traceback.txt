@@ -1,56 +1,55 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/screens.rpy", line 556, in execute
-    screen mods:
-  File "game/screens.rpy", line 575, in execute
-    grid 1 1:
-  File "game/screens.rpy", line 588, in execute
-    xalign 0.0
-  File "game/screens.rpy", line 591, in execute
-    text "Nom du mod" xpos 15 ypos 15 xsize 450
-  File "game/screens.rpy", line 597, in execute
-    side "c":
-NameError: name 'tt' is not defined
+  File "renpy/common/00action_data.rpy", line 50, in get_selected
+    return getattr(self.object, self.field) == self.value
+TypeError: getattr(): attribute name must be string
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
   File "renpy/common/_layout/screen_main_menu.rpym", line 29, in script
     $ ui.interact()
-  File "C:\Users\Carion\Desktop\Nouveau dossier (6)\Renpy\renpy\ast.py", line 785, in execute
+  File "D:\Perso\Nouveau dossier\Renpy\renpy\ast.py", line 785, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "C:\Users\Carion\Desktop\Nouveau dossier (6)\Renpy\renpy\python.py", line 1445, in py_exec_bytecode
+  File "D:\Perso\Nouveau dossier\Renpy\renpy\python.py", line 1445, in py_exec_bytecode
     exec bytecode in globals, locals
   File "renpy/common/_layout/screen_main_menu.rpym", line 29, in <module>
     $ ui.interact()
-  File "C:\Users\Carion\Desktop\Nouveau dossier (6)\Renpy\renpy\ui.py", line 277, in interact
+  File "D:\Perso\Nouveau dossier\Renpy\renpy\ui.py", line 277, in interact
     rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "C:\Users\Carion\Desktop\Nouveau dossier (6)\Renpy\renpy\display\core.py", line 2259, in interact
-    scene_lists.replace_transient()
-  File "C:\Users\Carion\Desktop\Nouveau dossier (6)\Renpy\renpy\display\core.py", line 672, in replace_transient
-    self.remove(layer, tag)
-  File "C:\Users\Carion\Desktop\Nouveau dossier (6)\Renpy\renpy\display\core.py", line 959, in remove
-    self.hide_or_replace(layer, remove_index, "hide")
-  File "C:\Users\Carion\Desktop\Nouveau dossier (6)\Renpy\renpy\display\core.py", line 883, in hide_or_replace
-    d = oldsle.displayable._hide(now - st, now - at, prefix)
-  File "C:\Users\Carion\Desktop\Nouveau dossier (6)\Renpy\renpy\display\screen.py", line 426, in _hide
-    self.update()
-  File "C:\Users\Carion\Desktop\Nouveau dossier (6)\Renpy\renpy\display\screen.py", line 556, in update
-    self.screen.function(**self.scope)
-  File "game/screens.rpy", line 556, in execute
-    screen mods:
-  File "game/screens.rpy", line 575, in execute
-    grid 1 1:
-  File "game/screens.rpy", line 588, in execute
-    xalign 0.0
-  File "game/screens.rpy", line 591, in execute
-    text "Nom du mod" xpos 15 ypos 15 xsize 450
-  File "game/screens.rpy", line 597, in execute
-    side "c":
-  File "<screen language>", line 597, in <module>
-NameError: name 'tt' is not defined
+  File "D:\Perso\Nouveau dossier\Renpy\renpy\display\core.py", line 2248, in interact
+    repeat, rv = self.interact_core(preloads=preloads, **kwargs)
+  File "D:\Perso\Nouveau dossier\Renpy\renpy\display\core.py", line 2496, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "D:\Perso\Nouveau dossier\Renpy\renpy\display\core.py", line 341, in visit_all
+    d.visit_all(callback)
+  File "D:\Perso\Nouveau dossier\Renpy\renpy\display\core.py", line 341, in visit_all
+    d.visit_all(callback)
+  File "D:\Perso\Nouveau dossier\Renpy\renpy\display\core.py", line 341, in visit_all
+    d.visit_all(callback)
+  File "D:\Perso\Nouveau dossier\Renpy\renpy\display\screen.py", line 386, in visit_all
+    self.child.visit_all(callback)
+  File "D:\Perso\Nouveau dossier\Renpy\renpy\display\core.py", line 341, in visit_all
+    d.visit_all(callback)
+  File "D:\Perso\Nouveau dossier\Renpy\renpy\display\core.py", line 341, in visit_all
+    d.visit_all(callback)
+  File "D:\Perso\Nouveau dossier\Renpy\renpy\display\core.py", line 341, in visit_all
+    d.visit_all(callback)
+  File "D:\Perso\Nouveau dossier\Renpy\renpy\display\core.py", line 341, in visit_all
+    d.visit_all(callback)
+  File "D:\Perso\Nouveau dossier\Renpy\renpy\display\core.py", line 343, in visit_all
+    callback(self)
+  File "D:\Perso\Nouveau dossier\Renpy\renpy\display\core.py", line 2496, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "D:\Perso\Nouveau dossier\Renpy\renpy\display\behavior.py", line 691, in per_interact
+    if is_selected(self.action):
+  File "D:\Perso\Nouveau dossier\Renpy\renpy\display\behavior.py", line 335, in is_selected
+    return clicked.get_selected()
+  File "renpy/common/00action_data.rpy", line 50, in get_selected
+    return getattr(self.object, self.field) == self.value
+TypeError: getattr(): attribute name must be string
 
-Windows-8-6.2.9200
+Windows-7-6.1.7601-SP1
 Ren'Py 6.99.3.404
 ParisByNight 0.0

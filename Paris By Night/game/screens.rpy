@@ -550,8 +550,8 @@ init -2 python:
 ##############################################################################
 # Mods
 #
-# Écran permettant à l'utilisateur de changer les préférences.
-# http://www.renpy.org/doc/html/screen_special.html#prefereces
+# Écran permettant à l'utilisateur de voir quels sont les mods disponibles et activés
+# Construction perso
 
 screen mods:
 
@@ -587,12 +587,30 @@ screen mods:
         hbox :
             xalign 0.0
             yalign 0.0
-            fixed :
-                text "Nom du mod" xpos 15 ypos 15 xsize 450
-                text "V. du mod" xpos 450 ypos 10 xsize 70 size 15
-                text "V. du jeu compa" xpos 510 ypos 5 xsize 70 size 15
-                text "Elements impactés" xpos 800 ypos 15 text_align 0.5
-                text "Actif ?" xpos 1225 ypos 20 xsize 40 size 15
+            xsize 1280
+            xfill True
+            hbox :
+                xsize 450
+                xfill True
+                text "Nom du mod" xpos 15 ypos 15
+            hbox :
+                xsize 60
+                xfill True                
+                text "V. du mod"
+            hbox :
+                xsize 60
+                xfill True
+                text "V. du jeu compa" size 17
+            hbox :
+                xsize 470
+                xfill True
+                hbox:
+                    xfill True
+                    text "Elements impactés" xpos 85 ypos 15
+            hbox :
+                xsize 35
+                xfill True
+                text "Actif ?" ypos 15
 
         side "c":
             area (-1, 60, 1280, 690)
@@ -601,34 +619,57 @@ screen mods:
                 mousewheel True
 
                 vbox:
-                    for label, name, vermod, versg, placemod, charactermod, discussionmod in mods_dispo:
+# For key in dictionnaire.items() :
+    # For nomchemin, name, etc des valeurs in dictionnaire[key] :
+# http://www.science-emergence.com/Python/HowToWorkWithDictionaryInPython/
+# http://www.science-emergence.com/Python/PythonFAQ/MultipleValuesKeyDictionaryPython/
+                    for nomchemmin, name, vermod, versg, placemod, charactermod, discussionmod, actif in mods_dispo:                      
                         button:
-                            action Return(label)
+                            action SetVariable('nb_de_mods', 0)
                             xfill True
-
-                            hbox : 
-                                text name style "button_text" min_width 440 text_align 0.0
-                                text vermod style "button_text" min_width 70 text_align 0.0 size 12 xmaximum 70
-                                text versg style "button_text" min_width 70 size 15 xmaximum 70
+                            hbox :
+                                xalign 0.0
+                                xsize 1280
+                                xfill True
                                 hbox :
-                                    if placemod == "1":
-                                        imagebutton :
-                                            idle "menus/picto_lieu.png" 
-                                            hover "menus/picto_lieu.png" 
-                                            action Return
-                                            hovered tt.Action(("{b}{color=#000}{size=-6}Lieux ajoutés{/size}{/color}{/b}"))
-                                    if charactermod == "1":
-                                        imagebutton :
-                                            idle "menus/picto_personnes.png" 
-                                            hover "menus/picto_personnes.png" 
-                                            action Return
-                                            hovered tt.Action(("{b}{color=#000}{size=-6}Personnages ajoutés{/size}{/color}{/b}"))
-                                    if discussionmod == "1":
-                                        imagebutton :
-                                            idle "menus/picto_discussion.png" 
-                                            hover "menus/picto_discussion.png" 
-                                            action Return
-                                            hovered tt.Action(("{b}{color=#000}{size=-6}Conversations ajoutées{/size}{/color}{/b}"))
+                                    xsize 450
+                                    xfill True
+                                    text name text_align 0.0
+                                hbox :
+                                    xsize 60
+                                    xfill True                
+                                    text vermod size 15 text_align 0.5
+                                hbox :
+                                    xsize 60
+                                    xfill True
+                                    text versg size 15 text_align 0.5
+                                hbox :
+                                    xsize 510
+                                    xfill True
+                                    hbox : 
+                                        if placemod == "1":
+                                            imagebutton :
+                                                idle "menus/picto_lieu.png" 
+                                                hover "menus/picto_lieu.png" 
+                                                action Return
+                                                hovered tt.Action(("{b}{color=#000}{size=-6}Lieux ajoutés{/size}{/color}{/b}"))
+                                        if charactermod == "1":
+                                            imagebutton :
+                                                idle "menus/picto_personnes.png" 
+                                                hover "menus/picto_personnes.png" 
+                                                action Return
+                                                hovered tt.Action(("{b}{color=#000}{size=-6}Personnages ajoutés{/size}{/color}{/b}"))
+                                        if discussionmod == "1":
+                                            imagebutton :
+                                                idle "menus/picto_discussion.png" 
+                                                hover "menus/picto_discussion.png" 
+                                                action Return
+                                                hovered tt.Action(("{b}{color=#000}{size=-6}Conversations ajoutées{/size}{/color}{/b}"))
+                                hbox :
+                                    if actif == 1 :
+                                        image "menus/actif.png" 
+                                    else : 
+                                        image "menus/inactif.png" 
                                         
                     null height 20
 
