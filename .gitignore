@@ -42,9 +42,10 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# Binaires de renpy
+# Binaires et backup auto de renpy
 *.rpyb
 *.rpyc
+*.bak
 
 # Fichiers textes de trace :
 errors.txt
