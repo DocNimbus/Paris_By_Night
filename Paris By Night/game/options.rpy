@@ -8,6 +8,7 @@
 
 init -1 python hide:
 
+
     ## Cette option devrait être passé à False avant la distribution
     ## du jeu, ainsi le joueur ne peut pas tricher en utilisant les
     ## outils pour développeur.
@@ -21,12 +22,12 @@ init -1 python hide:
 
     ## Titre de la fenêtre (lorsque le jeu se fait en mode fenêtré).
 
-    config.window_title = u"ParisByNight"
+    config.window_title = u"Paris By Night"
 
     ## Contrôle le nom et la version du jeu; qui apparaîtront dans les
     ## fichiers de débogage.
-    config.name = "ParisByNight"
-    config.version = "0.0"
+    config.name = "Paris By Night"
+    config.version = "Pre Alpha 0.1"
 
     #########################################
     ## Thèmes

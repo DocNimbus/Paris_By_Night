@@ -195,6 +195,12 @@ screen main_menu:
         textbutton _("Help") action Help()
         textbutton _("Mods") action ShowMenu("mods")
         textbutton _("Quit") action Quit(confirm=False)
+    
+    frame:
+        background None
+        xpos 0
+        yalign 1.0
+        text "Version du jeu : " + config.version size 8
 
 init -2 python:
 
@@ -587,10 +593,10 @@ screen mods:
         hbox :
             xalign 0.0
             yalign 0.0
-            xsize 1280
+            xsize config.screen_width
             xfill True
             hbox :
-                xsize 450
+                xsize config.screen_width - (60+60+600+80)
                 xfill True
                 text "Nom du mod" xpos 15 ypos 15
             hbox :
@@ -602,35 +608,36 @@ screen mods:
                 xfill True
                 text "V. du jeu compa" size 17
             hbox :
-                xsize 470
+                xsize 600
                 xfill True
                 hbox:
                     xfill True
-                    text "Elements impactés" xpos 85 ypos 15
+                    #xcenter
+                    text "Elements impactés"  xalign 0.5 ypos 15
             hbox :
-                xsize 35
+                xsize 80
                 xfill True
                 text "Actif ?" ypos 15
 
         side "c":
-            area (-1, 60, 1280, 690)
+            area (-1, 60, config.screen_width, config.screen_height - 80)
 
             viewport:
                 mousewheel True
 
                 vbox:
-                    for key, (namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, actif) in dictionnaire_mods.items() :                
+                    for key, (chemin_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, actif) in dictionnaire_mods.items() :                
                         button:
-                            action ToggleDict(dictionnaire_mods, key, true_value=[namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, '1'], false_value=[namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, '0'])
+                            action ToggleDict(dictionnaire_mods, key, true_value=(chemin_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, '1'), false_value=(chemin_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod,enquete_mod, enquete_alea_mod, objets_mod, '0'))
                             xfill True
                             hbox :
                                 xalign 0.0
-                                xsize 1280
+                                xsize config.screen_width
                                 xfill True
                                 $ persistent.mods[namemod] = actif
-                                $ renpy.save_persistent()
+                                #$ renpy.save_persistent()
                                 hbox :
-                                    xsize 450
+                                    xsize config.screen_width - (60+60+600+85)
                                     xfill True
                                     text namemod text_align 0.0
                                 hbox :
@@ -642,28 +649,54 @@ screen mods:
                                     xfill True
                                     text version_game_mod size 15 text_align 0.5
                                 hbox :
-                                    xsize 510
+                                    xpos 10
+                                    xsize 600
                                     xfill True
                                     hbox : 
                                         if place_mod == "1":
                                             imagebutton :
                                                 idle "menus/picto_lieu.png" 
                                                 hover "menus/picto_lieu.png" 
-                                                action Return
+                                                action ToggleDict(dictionnaire_mods, key, true_value=(chemin_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, '1'), false_value=(chemin_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod,enquete_mod, enquete_alea_mod, objets_mod, '0'))
                                                 hovered tt.Action(("{b}{color=#000}{size=-6}Lieux ajoutés{/size}{/color}{/b}"))
                                         if character_mod == "1":
                                             imagebutton :
                                                 idle "menus/picto_personnes.png" 
                                                 hover "menus/picto_personnes.png" 
-                                                action Return
+                                                action ToggleDict(dictionnaire_mods, key, true_value=(chemin_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, '1'), false_value=(chemin_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod,enquete_mod, enquete_alea_mod, objets_mod, '0'))
+                                                #action Return
                                                 hovered tt.Action(("{b}{color=#000}{size=-6}Personnages ajoutés{/size}{/color}{/b}"))
                                         if discussion_mod == "1":
                                             imagebutton :
                                                 idle "menus/picto_discussion.png" 
-                                                hover "menus/picto_discussion.png" 
-                                                action Return
+                                                hover "menus/picto_discussion.png"
+                                                action ToggleDict(dictionnaire_mods, key, true_value=(chemin_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, '1'), false_value=(chemin_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod,enquete_mod, enquete_alea_mod, objets_mod, '0'))
+                                               # action Return
                                                 hovered tt.Action(("{b}{color=#000}{size=-6}Conversations ajoutées{/size}{/color}{/b}"))
-                                hbox : 
+                                        if enquete_mod == "1":
+                                            imagebutton :
+                                                idle "menus/picto_enquete.png" 
+                                                hover "menus/picto_enquete.png"
+                                                action ToggleDict(dictionnaire_mods, key, true_value=(chemin_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, '1'), false_value=(chemin_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod,enquete_mod, enquete_alea_mod, objets_mod, '0'))
+                                               # action Return
+                                                hovered tt.Action(("{b}{color=#000}{size=-6}Enquêtes ajoutées{/size}{/color}{/b}"))
+                                        if enquete_alea_mod == "1":
+                                            imagebutton :
+                                                idle "menus/picto_enquete_alea.png" 
+                                                hover "menus/picto_enquete_alea.png"
+                                                action ToggleDict(dictionnaire_mods, key, true_value=(chemin_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, '1'), false_value=(chemin_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod,enquete_mod, enquete_alea_mod, objets_mod, '0'))
+                                               # action Return
+                                                hovered tt.Action(("{b}{color=#000}{size=-6}Enquêtes aléatoires ajoutées{/size}{/color}{/b}"))
+                                        if objets_mod == "1":
+                                            imagebutton :
+                                                idle "menus/picto_objets.png" 
+                                                hover "menus/picto_objets.png"
+                                                action ToggleDict(dictionnaire_mods, key, true_value=(chemin_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, '1'), false_value=(chemin_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod,enquete_mod, enquete_alea_mod, objets_mod, '0'))
+                                               # action Return
+                                                hovered tt.Action(("{b}{color=#000}{size=-6}Objets ajoutés{/size}{/color}{/b}"))
+                                hbox :                                    
+                                    xsize 85
+                                    xfill True 
                                     if actif == '1' :
                                         image "menus/actif.png" 
                                     else : 
@@ -678,13 +711,13 @@ screen mods:
             ysize 60
         
         fixed:
-            text tt.value xalign 0.5 yalign 0.03
+            text tt.value xalign 0.5 yalign 0.97
             at my_transform
     
 
 transform my_transform:
     on show:
-        xpos 15 ypos 15 xanchor 0.0 yanchor 0.0
+        xpos  15 ypos 15 xanchor 0.0 yanchor 0.0
         linear 1.0 xanchor 0.0
     on hide:
         linear 1.0 xanchor 1.0

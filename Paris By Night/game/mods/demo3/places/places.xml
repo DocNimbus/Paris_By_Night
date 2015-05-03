@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<worldmap>
+		<element1>
+			<name>"Go Home"</name>
+			<exit>"go home"</exit>
+			<xposition>602</xposition>
+			<yposition>'316'</yposition>
+			<size_x>78</size_x>
+			<size_y>'78'</size_y>
+		</element1>
+	</worldmap>
+</data>

@@ -21,8 +21,12 @@ init -1 python:
                         persistent.mods[namemod] = '0'        
                     version_game_mod = tree.findtext('version_game', default='Non disponible')
                     version_mod = tree.findtext('version_mod', default='Non disponible')
-                    place_mod = tree.findtext('place', default=0)
+                    place_mod = tree.findtext('places', default=0)
                     character_mod = tree.findtext('character', default=0)
                     discussion_mod = tree.findtext('discussion', default=0)
-                    dictionnaire_mods[nb_de_mods] = [namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, persistent.mods[namemod]]
+                    enquete_mod = tree.findtext('enquete', default=0)
+                    enquete_alea_mod = tree.findtext('enquete_alea', default=0)
+                    objets_mod = tree.findtext('objets', default=0)
+                    chemin_mod = str(os.path.split(root)[1:])[3:-3]
+                    dictionnaire_mods[nb_de_mods] = (chemin_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, persistent.mods[namemod])
 
