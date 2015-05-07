@@ -27,7 +27,7 @@ init -1 python hide:
     ## Contrôle le nom et la version du jeu; qui apparaîtront dans les
     ## fichiers de débogage.
     config.name = "Paris By Night"
-    config.version = "Pre Alpha 0.1"
+    config.version = "Pre Alpha 0.0.1"
 
     #########################################
     ## Thèmes
@@ -142,7 +142,7 @@ init -1 python hide:
 
     ## Le fichier contenant la police par défaut.
 
-    # style.default.font = "DejaVuSans.ttf"
+    style.default.font = "fonts/segoeui.ttf"
 
     ## La taille par défaut du texte.
 
@@ -294,16 +294,16 @@ init python:
     ## The name that's used for directories and archive files. For example, if
     ## this is 'mygame-1.0', the windows distribution will be in the
     ## directory 'mygame-1.0-win', in the 'mygame-1.0-win.zip' file.
-    build.directory_name = "ParisByNight-1.0"
+    build.directory_name = "ParisByNight-0.0.1"
 
     ## The name that's uses for executables - the program that users will run
     ## to start the game. For example, if this is 'mygame', then on Windows,
     ## users can click 'mygame.exe' to start the game.
-    build.executable_name = "ParisByNight"
+    build.executable_name = "Paris By Night"
 
     ## If True, Ren'Py will include update information into packages. This
     ## allows the updater to run.
-    build.include_update = False
+    build.include_update = True
 
     ## File patterns:
     ##

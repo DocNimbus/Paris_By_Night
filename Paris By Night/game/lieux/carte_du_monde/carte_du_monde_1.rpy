@@ -1,35 +1,30 @@
 ## Carte du monde
 
+init python :
+    from fonctions import *
+    
 
-screen demo_imagemap:
-
-    $ tutorials = [
-        (8, 200, 78, 78, "swimming", "Swimming"),
-        (204, 50, 78, 78, "science", "Science"),
-        (452, 79, 78, 78, "art", "Art"),
+screen demo_imagemap(nom_worldmap):
+    $ lieux_disponibles = [
+        (8, 200, "swimming", "Swimming", "lieux/carte_du_monde/nage.png", "lieux/carte_du_monde/nage_hover.png"),
         ]
 
-    for key, (chemin_mod, namemod, version_mod, version_game_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, actif) in dictionnaire_mods.items() : 
-        if actif == '1' and place_mod == '1':
-            for root, dirs, files in os.walk(config.gamedir + '/mods/' + str(chemin_mod) + '/places'):
-                $ path = root.split('/')
-                for file in files:
-                    if file == ('places.xml'):
-                        $ tree = elementtree.parse(root + '/places.xml')
-                        $ worldmap = tree.findtext('worldmap', default='Non disponible')
-                        if worldmap != 'Non disponible': # Si pas de nom, on abandonne
-                            $ bob = (eval(tree.findtext('worldmap/element1/xposition', default=0)), 316, 78, 78, "go home", "Go Home")
-                            $ tutorials.append(bob) 
+    python :
+        lieux_disponibles = carte_monde(lieux_disponibles, persistent.mods, nom_worldmap)
 
     imagemap:
-        auto "lieux/carte_du_monde/imagemap_%s.jpg"
-        for x, y, xwidth, yheight, actionn, alternaite in tutorials:
-            hotspot (x, y, xwidth, yheight) action Return(actionn) alt alternaite
+        ground "lieux/carte_du_monde/fond_worlmap1.jpg"
+        for xposition, yposition, actionn, alternaite, imagebase, imagehover in lieux_disponibles:
+            imagebutton :
+                idle imagebase 
+                hover imagehover
+                xpos xposition  
+                ypos yposition
+                action Return(actionn) # alt alternaite idle imagebase hover imagehover left_padding x top_padding y
 
-  
 
 label worldmap_1 :
-    call screen demo_imagemap
+    call screen demo_imagemap('worldmap_1')
 
     # Call screen assignes the chosen result from the imagemap to the
     # _return variable. We can use an if statement to vary what

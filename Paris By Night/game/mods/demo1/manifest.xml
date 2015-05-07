@@ -1,7 +1,7 @@
 ﻿<xml>
 <name>Test 1</name>
-<version_game>0.01</version_game>
+<author>bob</author>
 <version_mod>0.1</version_mod>
-<places>0</places>
+<places>1</places>
 <discussion>1</discussion>
 </xml>

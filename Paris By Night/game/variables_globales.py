@@ -1,0 +1,1 @@
+money_avatar = 150 # Argent possédée par le joueur

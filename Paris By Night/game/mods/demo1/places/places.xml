@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<worldmap_1>
+		<proufdls>
+			<name>"Science"</name>
+			<exit>"science"</exit>
+			<xposition>204</xposition>
+			<yposition>50</yposition>
+			<idle>science.png</idle>
+			<hover>science_hover.png</hover>
+		</proufdls>
+	</worldmap_1>
+</data>
