@@ -3,6 +3,16 @@ init -1 python:
     if not persistent.mods:
         persistent.mods = {}
     dictionnaire_mods = {}
+    liste_dico_mod = ('chemin_mod', 
+        'namemod', 
+        'version_mod', 
+        'author_mod','place_mod', 
+        'character_mod', 
+        'discussion_mod', 
+        'enquete_mod', 
+        'enquete_alea_mod', 
+        'objets_mod', 
+        'mod_actif')
 
     
     
@@ -28,4 +38,11 @@ init -1 python:
                     enquete_alea_mod = tree.findtext('enquete_alea', default=0)
                     objets_mod = tree.findtext('objets', default=0)
                     chemin_mod = str(os.path.split(root)[1:])[3:-3]
-                    dictionnaire_mods[nb_de_mods] = (chemin_mod, namemod, version_mod, author_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, persistent.mods[namemod])
+                    liste_var_mods = range(len(liste_dico_mod))
+                    mod_actif = persistent.mods[namemod]
+                    i = 0
+                    for i in range(0,len(liste_dico_mod)) :
+                        liste_var_mods[i] = eval(liste_dico_mod[i])
+                        i = i+1
+
+                    dictionnaire_mods[nb_de_mods] = liste_var_mods

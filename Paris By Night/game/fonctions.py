@@ -25,7 +25,13 @@ def dictionnaire(persistent): #Liste des mods dispo, ce qu'ils proposent et si i
                     enquete_alea_mod = tree.findtext('enquete_alea', default=0)
                     objets_mod = tree.findtext('objets', default=0)
                     chemin_mod = str(os.path.split(root)[1:])[3:-3]
-                    dictionnaire_mods[nb_de_mods] = (chemin_mod, namemod, version_mod, author_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, persistent[namemod])
+                    mod_actif = persistent[namemod]
+                    liste_var_mods = range(len(liste_dico_mod))
+                    i = 0
+                    for i in range(0,len(liste_dico_mod)) :
+                        liste_var_mods[i] = eval(liste_dico_mod[i])
+                        i = i+1
+                    dictionnaire_mods[nb_de_mods] = liste_var_mods
     
     return dictionnaire_mods
 
@@ -39,9 +45,10 @@ def carte_monde(lieux_disponibles, persistent, nom_worldmap): #Les déjà exista
     dictionnaire_mods = dictionnaire(persistent)
     
 # On lance la machine
-    for key, (chemin_mod, namemod, version_mod, author_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, actif) in dictionnaire_mods.items() :       
-        if actif == '1' and place_mod == '1':
-            for root, dirs, files in os.walk(renpy.config.gamedir + '/mods/' + str(chemin_mod) + '/places'):
+    for key, mods in dictionnaire_mods.items() :       
+        if mods[liste_dico_mod.index('mod_actif')] == '1' and mods[liste_dico_mod.index('place_mod')] == '1':
+            chemin_mod = str(mods[liste_dico_mod.index('chemin_mod')])
+            for root, dirs, files in os.walk(renpy.config.gamedir + '/mods/' + chemin_mod + '/places'):
                 path = root.split('/')
                 for file in files:
                     if file == ('places.xml'): # Le bon fichier existe ?
@@ -57,8 +64,8 @@ def carte_monde(lieux_disponibles, persistent, nom_worldmap): #Les déjà exista
                                         eval(tree.findtext(chemin + '/yposition', default=1280)),                           # position par rapport au haut de l'écran
                                         eval(tree.findtext(chemin + '/exit', default="Nope")),                              # lieu de sortie
                                         eval(tree.findtext(chemin + '/name', default="Nope")),                              # Nom de la sortie
-                                        "mods/" + chemin_mod + "/places/" + tree.findtext(chemin + '/idle', default=""),    # Chemin vers icône idle
-                                        "mods/" + chemin_mod + "/places/" + tree.findtext(chemin + '/hover', default="")))  # Chemin vers icône quand le curseur est dessus                                 
+                                        "mods/" + chemin_mod + tree.findtext(chemin + '/idle', default=""),                 # Chemin vers icône idle
+                                        "mods/" + chemin_mod + tree.findtext(chemin + '/hover', default="")))               # Chemin vers icône quand le curseur est dessus                                 
                                 a = a+2
 
     return lieux_disponibles

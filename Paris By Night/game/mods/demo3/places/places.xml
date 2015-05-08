@@ -7,16 +7,16 @@
 			<exit>"art"</exit>
 			<xposition>452</xposition>
 			<yposition>79</yposition>
-			<idle>art.png</idle>
-			<hover>art_hover.png</hover>
+			<idle>/places/art.png</idle>
+			<hover>/places/art_hover.png</hover>
 		</elemnt1>
 		<elemnt2>
 			<name>"Go Home"</name>
 			<exit>"go home"</exit>
 			<xposition>602</xposition>
 			<yposition>316</yposition>
-			<idle>maison.png</idle>
-			<hover>maison_hover.png</hover>
+			<idle>/places/maison.png</idle>
+			<hover>/places/maison_hover.png</hover>
 		</elemnt2>
 	</worldmap_1>
 </data>

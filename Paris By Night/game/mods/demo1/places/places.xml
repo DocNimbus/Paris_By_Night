@@ -6,8 +6,8 @@
 			<exit>"science"</exit>
 			<xposition>204</xposition>
 			<yposition>50</yposition>
-			<idle>science.png</idle>
-			<hover>science_hover.png</hover>
+			<idle>/places/science.png</idle>
+			<hover>/places/science_hover.png</hover>
 		</proufdls>
 	</worldmap_1>
 </data>

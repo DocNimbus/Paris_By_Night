@@ -632,78 +632,72 @@ screen mods:
                 mousewheel True
 
                 vbox:
-                    for key, (chemin_mod, namemod, version_mod, author_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, actif) in dictionnaire_mods.items() :                
+                    for key, mods in dictionnaire_mods.items() :                
                         button:
-                            action ToggleDict(dictionnaire_mods, key, true_value=(chemin_mod, namemod, version_mod, author_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, '1'), false_value=(chemin_mod, namemod, version_mod, author_mod, place_mod, character_mod, discussion_mod,enquete_mod, enquete_alea_mod, objets_mod, '0'))
+                            action ToggleDict(dictionnaire_mods, key, true_value=[mods[0], mods[1], mods[2], mods[3], mods[4], mods[5], mods[6], mods[7], mods[8], mods[9], '1'], false_value=[mods[0], mods[1], mods[2], mods[3], mods[4], mods[5], mods[6], mods[7], mods[8], mods[9], '0'])
                             xfill True
                             hbox :
                                 xalign 0.0
                                 xsize config.screen_width
                                 xfill True
-                                $ persistent.mods[namemod] = actif
-                                #$ renpy.save_persistent()
+                                $ persistent.mods[mods[liste_dico_mod.index('namemod')]] = mods[liste_dico_mod.index('mod_actif')]
                                 hbox :
                                     xsize config.screen_width - (60+60+600+85)
                                     xfill True
-                                    text namemod text_align 0.0
+                                    text mods[liste_dico_mod.index('namemod')] text_align 0.0
                                 hbox :
                                     xsize 160
                                     xfill True
-                                    text author_mod size 20 text_align 0.5                                    
+                                    text mods[liste_dico_mod.index('author_mod')] size 20 text_align 0.5                                    
                                 hbox :
                                     xsize 60
                                     xfill True                
-                                    text version_mod size 15 text_align 0.5
+                                    text mods[liste_dico_mod.index('version_mod')] size 15 text_align 0.5
                                 hbox :
                                     xpos 10
                                     xsize 500
                                     xfill True
                                     hbox : 
-                                        if place_mod == "1":
+                                        if mods[liste_dico_mod.index('place_mod')] == "1":
                                             imagebutton :
                                                 idle "menus/picto_lieu.png" 
                                                 hover "menus/picto_lieu.png" 
-                                                action ToggleDict(dictionnaire_mods, key, true_value=(chemin_mod, namemod, version_mod, author_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, '1'), false_value=(chemin_mod, namemod, version_mod, author_mod, place_mod, character_mod, discussion_mod,enquete_mod, enquete_alea_mod, objets_mod, '0'))
+                                                action ToggleDict(dictionnaire_mods, key, true_value=[mods[0], mods[1], mods[2], mods[3], mods[4], mods[5], mods[6], mods[7], mods[8], mods[9], '1'], false_value=[mods[0], mods[1], mods[2], mods[3], mods[4], mods[5], mods[6], mods[7], mods[8], mods[9], '0'])
                                                 hovered tt.Action(("{b}{color=#000}{size=-6}Lieux ajoutés{/size}{/color}{/b}"))
-                                        if character_mod == "1":
+                                        if mods[liste_dico_mod.index('character_mod')] == "1":
                                             imagebutton :
                                                 idle "menus/picto_personnes.png" 
                                                 hover "menus/picto_personnes.png" 
-                                                action ToggleDict(dictionnaire_mods, key, true_value=(chemin_mod, namemod, version_mod, author_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, '1'), false_value=(chemin_mod, namemod, version_mod, author_mod, place_mod, character_mod, discussion_mod,enquete_mod, enquete_alea_mod, objets_mod, '0'))
-                                                #action Return
+                                                action ToggleDict(dictionnaire_mods, key, true_value=[mods[0], mods[1], mods[2], mods[3], mods[4], mods[5], mods[6], mods[7], mods[8], mods[9], '1'], false_value=[mods[0], mods[1], mods[2], mods[3], mods[4], mods[5], mods[6], mods[7], mods[8], mods[9], '0'])
                                                 hovered tt.Action(("{b}{color=#000}{size=-6}Personnages ajoutés{/size}{/color}{/b}"))
-                                        if discussion_mod == "1":
+                                        if mods[liste_dico_mod.index('discussion_mod')] == "1":
                                             imagebutton :
                                                 idle "menus/picto_discussion.png" 
                                                 hover "menus/picto_discussion.png"
-                                                action ToggleDict(dictionnaire_mods, key, true_value=(chemin_mod, namemod, version_mod, author_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, '1'), false_value=(chemin_mod, namemod, version_mod, author_mod, place_mod, character_mod, discussion_mod,enquete_mod, enquete_alea_mod, objets_mod, '0'))
-                                               # action Return
+                                                action ToggleDict(dictionnaire_mods, key, true_value=[mods[0], mods[1], mods[2], mods[3], mods[4], mods[5], mods[6], mods[7], mods[8], mods[9], '1'], false_value=[mods[0], mods[1], mods[2], mods[3], mods[4], mods[5], mods[6], mods[7], mods[8], mods[9], '0'])
                                                 hovered tt.Action(("{b}{color=#000}{size=-6}Conversations ajoutées{/size}{/color}{/b}"))
-                                        if enquete_mod == "1":
+                                        if mods[liste_dico_mod.index('enquete_mod')] == "1":
                                             imagebutton :
                                                 idle "menus/picto_enquete.png" 
                                                 hover "menus/picto_enquete.png"
-                                                action ToggleDict(dictionnaire_mods, key, true_value=(chemin_mod, namemod, version_mod, author_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, '1'), false_value=(chemin_mod, namemod, version_mod, author_mod, place_mod, character_mod, discussion_mod,enquete_mod, enquete_alea_mod, objets_mod, '0'))
-                                               # action Return
+                                                action ToggleDict(dictionnaire_mods, key, true_value=[mods[0], mods[1], mods[2], mods[3], mods[4], mods[5], mods[6], mods[7], mods[8], mods[9], '1'], false_value=[mods[0], mods[1], mods[2], mods[3], mods[4], mods[5], mods[6], mods[7], mods[8], mods[9], '0'])
                                                 hovered tt.Action(("{b}{color=#000}{size=-6}Enquêtes ajoutées{/size}{/color}{/b}"))
-                                        if enquete_alea_mod == "1":
+                                        if mods[liste_dico_mod.index('enquete_alea_mod')] == "1":
                                             imagebutton :
                                                 idle "menus/picto_enquete_alea.png" 
                                                 hover "menus/picto_enquete_alea.png"
-                                                action ToggleDict(dictionnaire_mods, key, true_value=(chemin_mod, namemod, version_mod, author_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, '1'), false_value=(chemin_mod, namemod, version_mod, author_mod, place_mod, character_mod, discussion_mod,enquete_mod, enquete_alea_mod, objets_mod, '0'))
-                                               # action Return
+                                                action ToggleDict(dictionnaire_mods, key, true_value=[mods[0], mods[1], mods[2], mods[3], mods[4], mods[5], mods[6], mods[7], mods[8], mods[9], '1'], false_value=[mods[0], mods[1], mods[2], mods[3], mods[4], mods[5], mods[6], mods[7], mods[8], mods[9], '0'])
                                                 hovered tt.Action(("{b}{color=#000}{size=-6}Enquêtes aléatoires ajoutées{/size}{/color}{/b}"))
-                                        if objets_mod == "1":
+                                        if mods[liste_dico_mod.index('objets_mod')] == "1":
                                             imagebutton :
                                                 idle "menus/picto_objets.png" 
                                                 hover "menus/picto_objets.png"
-                                                action ToggleDict(dictionnaire_mods, key, true_value=(chemin_mod, namemod, version_mod, author_mod, place_mod, character_mod, discussion_mod, enquete_mod, enquete_alea_mod, objets_mod, '1'), false_value=(chemin_mod, namemod, version_mod, author_mod, place_mod, character_mod, discussion_mod,enquete_mod, enquete_alea_mod, objets_mod, '0'))
-                                               # action Return
+                                                action ToggleDict(dictionnaire_mods, key, true_value=[mods[0], mods[1], mods[2], mods[3], mods[4], mods[5], mods[6], mods[7], mods[8], mods[9], '1'], false_value=[mods[0], mods[1], mods[2], mods[3], mods[4], mods[5], mods[6], mods[7], mods[8], mods[9], '0'])
                                                 hovered tt.Action(("{b}{color=#000}{size=-6}Objets ajoutés{/size}{/color}{/b}"))
                                 hbox :                                    
                                     xsize 85
                                     xfill True 
-                                    if actif == '1' :
+                                    if mods[liste_dico_mod.index('mod_actif')] == '1' :
                                         image "menus/actif.png" 
                                     else : 
                                         image "menus/inactif.png" 
