@@ -350,3 +350,18 @@ init python:
     build.documentation('*.html')
     build.documentation('*.txt')
     
+    build.archive("main", "all")
+
+    # Put script files into the scripts archive.
+    build.classify("game/**.rpy", "main")
+    build.classify("game/**.rpyc", "main")
+    build.classify("game/**.py", "main")
+    build.classify("game/**.pyo", "main")
+
+    # Put images into the images archive.
+    build.classify("game/**.jpg", "main")
+    build.classify("game/**.png", "main")
+
+    build.classify("game/mods/", None)
+    build.allow_integrated_gpu = True # Allows Ren'Py to run on the integrated GPU on platforms that have both integrated and discrete GPUs. Right now, this is only supported on Mac OS X.
+    

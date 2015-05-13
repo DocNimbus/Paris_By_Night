@@ -166,3 +166,11 @@ translate english strings:
     old "Prefs"
     new "Prefs"
 
+# TODO: Translation updated at 2015-05-13 16:57
+
+translate english strings:
+
+    # game/screens.rpy:398
+    old "Utilisation de la RAM (redémarrage requis)"
+    new "Utilisation de la RAM (redémarrage requis)"
+

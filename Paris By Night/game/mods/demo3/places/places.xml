@@ -2,8 +2,8 @@
 <data>
 	<worldmap_1>
 		<elemnt1>
-			<condition>money_avatar == 200</condition>
-			<name>"Art"</name>
+			<condition>money_avatar != 200</condition>
+			<txt>Art</txt>
 			<exit>"art"</exit>
 			<xposition>452</xposition>
 			<yposition>79</yposition>
@@ -11,7 +11,8 @@
 			<hover>/places/art_hover.png</hover>
 		</elemnt1>
 		<elemnt2>
-			<name>"Go Home"</name>
+			<txt lang="english">Go Home</txt>
+			<txt lang="french">À la maison</txt>
 			<exit>"go home"</exit>
 			<xposition>602</xposition>
 			<yposition>316</yposition>

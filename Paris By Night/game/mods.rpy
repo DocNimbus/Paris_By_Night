@@ -13,7 +13,11 @@ init -1 python:
         'enquete_alea_mod', 
         'objets_mod', 
         'mod_actif')
+    if not persistent.performance:
+        persistent.performance = 25
 
+    config.image_cache_size = persistent.performance
+    var_perf = config.image_cache_size
     
     
     import os

@@ -385,8 +385,19 @@ screen preferences:
                 has vbox
 
                 label _("Language")
-                textbutton "French" action Language(None)
-                textbutton "English" action Language("english")
+                textbutton "French":
+                    action [SetField(persistent, "_langue", "french"), Language(None)]
+
+                textbutton "English":
+                    action [SetField(persistent, "_langue", "english"), Language("english")]
+
+            frame:
+                style_group "pref"
+                has vbox
+
+                label _("Utilisation de la RAM (redémarrage requis)")
+                bar value VariableValue('var_perf', 50, max_is_zero=False, style='bar', offset=1, step=None)
+                $ config.image_cache_size = persistent.performance = var_perf
 
 
         vbox:
@@ -471,7 +482,7 @@ init -2 python:
 
     style.soundtest_button.xalign = 1.0
 
-
+    
 ##############################################################################
 # Menu Oui/Non
 #

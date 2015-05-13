@@ -9,18 +9,26 @@ screen demo_imagemap(nom_worldmap):
         (8, 200, "swimming", "Swimming", "lieux/carte_du_monde/nage.png", "lieux/carte_du_monde/nage_hover.png"),
         ]
 
+    default tt = Tooltip("")
+
     python :
+        langue_utilisee(_preferences.language)
         lieux_disponibles = carte_monde(lieux_disponibles, persistent.mods, nom_worldmap)
 
     imagemap:
         ground "lieux/carte_du_monde/fond_worlmap1.jpg"
-        for xposition, yposition, actionn, alternaite, imagebase, imagehover in lieux_disponibles:
+        for xposition, yposition, actionn, txt, imagebase, imagehover in lieux_disponibles:
             imagebutton :
                 idle imagebase 
                 hover imagehover
                 xpos xposition  
                 ypos yposition
-                action Return(actionn) # alt alternaite idle imagebase hover imagehover left_padding x top_padding y
+                action Return(actionn)
+                hovered tt.Action((txt))
+
+    fixed:
+        text tt.value xalign 0.5 yalign 0.97 color "#3B3F40" bold 1 outlines [ (3, "#fff4", 0, 0), (2, "#fff8", 0, 0),  (1, "#fffc", 0, 0) ]
+        at my_transform
 
 
 label worldmap_1 :

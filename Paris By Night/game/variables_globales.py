@@ -11,3 +11,5 @@ liste_dico_mod = ['chemin_mod',
     'enquete_alea_mod', 
     'objets_mod', 
     'mod_actif']
+
+langues = "french"

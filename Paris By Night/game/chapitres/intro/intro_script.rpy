@@ -3,8 +3,7 @@
 
 label intro_script:
 
-    python :
-        variables_demarrage(persistent.mods)
+
 
     e "test 1 é"
 

@@ -1,5 +1,13 @@
 from variables_globales import *
 
+def langue_utilisee(lang):  #pour avoir en variable python le nom du langage actuellement utilisé
+    if lang is None:
+        global langue
+        langue = "french"
+    else:
+        global langue
+        langue = lang
+
 def dictionnaire(persistent): #Liste des mods dispo, ce qu'ils proposent et si il sont activés ou non
 # Les imports 
     import os
@@ -59,11 +67,18 @@ def carte_monde(lieux_disponibles, persistent, nom_worldmap): #Les déjà exista
                                 chemin = str(nom_worldmap) + "/" + str(list(tree.find(nom_worldmap))[a-1])[10:-14].replace("'","")
                                 if tree.findtext(chemin + '/condition', default='Non disponible') == 'Non disponible' or \
                                 eval(tree.findtext(chemin + '/condition', default='Non disponible')):  # si il n'y a pas de condition particulière (ci-dessus) ou si la condition est vérifiée on pousuit
+                                    texte_trad = tree.findtext(chemin + '/txt', default="Nope")
+                                    for lang in tree.findall(chemin + '/txt'):
+                                        if lang.get('lang') == langue:
+                                            texte_trad = lang.text           
+
+                                                                    
                                     lieux_disponibles.append(( \
                                         eval(tree.findtext(chemin + '/xposition', default=1280)),                           # position par rapport au bord gauche de l'écran                                                                       
                                         eval(tree.findtext(chemin + '/yposition', default=1280)),                           # position par rapport au haut de l'écran
                                         eval(tree.findtext(chemin + '/exit', default="Nope")),                              # lieu de sortie
-                                        eval(tree.findtext(chemin + '/name', default="Nope")),                              # Nom de la sortie
+                                  #      eval(tree.findtext(chemin + '/txt', default="Nope")),                               # Nom de la sortie  
+                                        texte_trad,                                        
                                         "mods/" + chemin_mod + tree.findtext(chemin + '/idle', default=""),                 # Chemin vers icône idle
                                         "mods/" + chemin_mod + tree.findtext(chemin + '/hover', default="")))               # Chemin vers icône quand le curseur est dessus                                 
                                 a = a+2

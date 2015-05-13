@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDisplayName</key>
-	<string>ParisByNight</string>
+	<string>Paris By Night</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -20,19 +20,19 @@
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
-	<string>ParisByNight</string>
+	<string>Paris By Night</string>
 	<key>CFBundleIconFile</key>
 	<string>icon</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>ParisByNight</string>
+	<string>Paris By Night</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>ParisByNight-1.0</string>
+	<string>ParisByNight-0.0.1</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.1429609816</string>
+	<string>1.0.1431530700</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.simulation-games</string>
 	<key>NSSupportsAutomaticGraphicsSwitching</key>

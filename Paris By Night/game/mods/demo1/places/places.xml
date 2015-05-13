@@ -2,7 +2,7 @@
 <data>
 	<worldmap_1>
 		<proufdls>
-			<name>"Science"</name>
+			<txt lang="english">Science</txt>
 			<exit>"science"</exit>
 			<xposition>204</xposition>
 			<yposition>50</yposition>
