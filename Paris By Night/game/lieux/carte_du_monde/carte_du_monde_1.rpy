@@ -40,22 +40,22 @@ label worldmap_1 :
 
     if _return == "swimming":
 
-        e "You chose swimming."
+        avatar "You chose swimming."
 
-        e "Swimming seems like a lot of fun, but I didn't bring my bathing suit with me."
+        avatar "Swimming seems like a lot of fun, but I didn't bring my bathing suit with me."
 
     elif _return == "science":
 
-        e "You chose science."
+        avatar "You chose science."
 
-        e "I've heard that some schools have a competitive science team, but to me research is something that can't be rushed."
+        avatar "I've heard that some schools have a competitive science team, but to me research is something that can't be rushed."
 
     elif _return == "art":
 
-        e "You chose art."
+        avatar "You chose art."
 
-        e "Really good background art is hard to make, which is why so many games use filtered photographs. Maybe you can change that."
+        avatar "Really good background art is hard to make, which is why so many games use filtered photographs. Maybe you can change that."
 
     elif _return == "go home":
 
-        e "You chose to go home."
+        avatar "You chose to go home."

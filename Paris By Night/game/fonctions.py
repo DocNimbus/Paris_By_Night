@@ -84,4 +84,3 @@ def carte_monde(lieux_disponibles, persistent, nom_worldmap): #Les déjà exista
                                 a = a+2
 
     return lieux_disponibles
-    

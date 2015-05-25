@@ -48,5 +48,16 @@ init -1 python:
                     for i in range(0,len(liste_dico_mod)) :
                         liste_var_mods[i] = eval(liste_dico_mod[i])
                         i = i+1
-
                     dictionnaire_mods[nb_de_mods] = liste_var_mods
+
+    def define_images(imageFolder, flip=True):
+        path_list_folder = imageFolder.split("/")
+        path_list_folder = len(path_list_folder)
+        for path_portraits in renpy.list_files():
+            if path_portraits.startswith(imageFolder):
+                path_list = path_portraits.split("/")   # on split
+                path_list[-1] = os.path.splitext(path_list[-1])[0] # on vire l'extension
+                path_list = tuple(path_list[path_list_folder:])   # on garde juste l'arborescence post imageFolder
+                renpy.image(path_list, path_portraits) # construction de l'image avec le lien
+                if flip:
+                    renpy.image(path_list + ("flip", ), im.Flip(path_portraits, horizontal=True))
